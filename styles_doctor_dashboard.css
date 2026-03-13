@@ -1,0 +1,883 @@
+/* ===== DOCTOR DASHBOARD STYLESHEET ===== */
+
+:root {
+    --primary-color: #0369a1;
+    --primary-dark: #0c4a6e;
+    --primary-light: #0284c7;
+    --danger-color: #dc2626;
+    --danger-light: #fee2e2;
+    --success-color: #059669;
+    --success-light: #dcfce7;
+    --warning-color: #d97706;
+    --warning-light: #fef3c7;
+    --gray-dark: #1f2937;
+    --gray-medium: #6b7280;
+    --gray-light: #f3f4f6;
+    --gray-border: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --bg-white: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafbfc;
+    color: var(--text-primary);
+    height: 100%;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--gray-border);
+    padding: 12px 20px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+}
+
+.logo-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.navbar-logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.navbar-logo p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin: 0;
+    font-weight: 500;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    justify-content: center;
+}
+
+.time-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.status-indicator {
+    color: var(--success-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.doctor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doctor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.doctor-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.doctor-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.doctor-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    background: var(--gray-light);
+    border: 1px solid var(--gray-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: var(--danger-light);
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-container {
+    display: grid;
+    grid-template-columns: 320px 1fr 300px;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.sidebar, .sidebar-right {
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.sidebar-right {
+    border-left: 1px solid var(--gray-border);
+    padding-left: 15px;
+}
+
+.content-area {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-medium);
+}
+
+/* ===== SIDEBAR SECTIONS ===== */
+.sidebar-section {
+    background: var(--bg-white);
+    border: 1px solid var(--gray-border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* ===== FORM STYLING ===== */
+.patient-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 8px 10px;
+    border: 1px solid var(--gray-border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.1);
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary, .btn-secondary, .btn-outline, .btn-success, .btn-delete, .btn-small {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--warning-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #b45309;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--gray-border);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: var(--gray-light);
+    border-color: var(--primary-color);
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #047857;
+}
+
+.btn-delete {
+    background: transparent;
+    color: var(--danger-color);
+    padding: 6px 12px;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.btn-delete:hover {
+    background: var(--danger-light);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* ===== RECENT LIST ===== */
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.recent-item {
+    padding: 8px;
+    background: var(--gray-light);
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.recent-item:hover {
+    background: var(--primary-light);
+    color: white;
+    border-left-color: white;
+}
+
+.empty-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 10px;
+}
+
+/* ===== UPLOAD SECTION ===== */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upload-box {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    border: 2px dashed var(--primary-color);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-box:hover {
+    background: linear-gradient(135deg, #e0f2fe, #cffafe);
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.upload-box h2 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.upload-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.upload-box small {
+    color: var(--gray-medium);
+    font-size: 12px;
+}
+
+.image-preview-container {
+    position: relative;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.preview-image {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--gray-border);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== RESULTS SECTION ===== */
+.results-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.diagnosis-card {
+    background: var(--bg-white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.diagnosis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.diagnosis-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.diagnosis-confidence {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.confidence-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.confidence-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.diagnosis-result {
+    margin: 20px 0;
+}
+
+.result-box {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 2px solid;
+}
+
+.result-box.benign {
+    background: var(--success-light);
+    border-color: var(--success-color);
+}
+
+.result-box.malignant {
+    background: var(--danger-light);
+    border-color: var(--danger-color);
+}
+
+.result-icon {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.result-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.result-label {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.result-subtext {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ===== RISK SECTION ===== */
+.risk-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+}
+
+.risk-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.risk-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.risk-bar {
+    height: 24px;
+    background: var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-border);
+}
+
+.risk-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+}
+
+.risk-fill.malignant {
+    background: linear-gradient(90deg, var(--danger-color), #dc2626);
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.risk-fill.benign {
+    background: linear-gradient(90deg, var(--success-color), #059669);
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.risk-percentage {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+}
+
+/* ===== CRITERIA CARD ===== */
+.criteria-card, .recommendation-card {
+    background: var(--bg-white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.criteria-card h3,
+.recommendation-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.abcde-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.criteria-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    background: var(--gray-light);
+    border-radius: 8px;
+}
+
+.criteria-item label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-badge {
+    background: var(--success-light);
+    color: var(--success-color);
+}
+
+/* ===== RECOMMENDATION CARD ===== */
+.recommendation-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recommendation-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.recommendation-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.recommendation-content ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.recommendation-content li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 60px;
+    opacity: 0.5;
+}
+
+.empty-state h2 {
+    font-size: 20px;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.empty-state p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ===== HISTORY & NOTES ===== */
+.history-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px;
+    background: var(--gray-light);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.history-item-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.history-item-value {
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.clinical-notes {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--gray-border);
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.clinical-notes:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.1);
+}
+
+/* ===== SYSTEM INFO ===== */
+.system-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.system-info p {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-online {
+    color: var(--success-color);
+    font-weight: 700;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.diagnosis-card {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.criteria-card,
+.recommendation-card {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1400px) {
+    .main-container {
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .sidebar-right {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    
+    .navbar-center {
+        display: none;
+    }
+    
+    .navbar-logo h1 {
+        font-size: 18px;
+    }
+    
+    .main-container {
+        padding: 12px;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .abcde-grid {
+        grid-template-columns: 1fr;
+    }
+}
